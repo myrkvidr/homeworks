@@ -78,9 +78,23 @@ class Library {
 		return this.books;
 	}
 
-	
+
+	findBookBy(prop, value) {
+    const searchedBook = this.books.find(book => book[prop] === value);
+    if (searchedBook === undefined) {
+      return null;
+    };
+    return searchedBook;
+  }
 
 	giveBookByName(bookName) {
-		let requestedBook
+		const requestedIndex = this.books.findIndex(book => book.name === bookName);
+		if (requestedIndex === -1) {
+			return null;
+		} 
+		let requestedBook = this.books.splice(requestedIndex, 1);
+		return requestedBook[0];
 	}
+
 }
+
